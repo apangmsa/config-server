@@ -1,7 +1,7 @@
 plugins {
 	id 'java'
-	id 'org.springframework.boot' version '3.5.12'
-	id 'io.spring.dependency-management' version '1.1.7'
+	id 'org.springframework.boot' version '3.3.4' // 안정적인 3.3 버전으로 변경
+	id 'io.spring.dependency-management' version '1.1.6'
 }
 
 group = 'org.iimsa'
@@ -9,7 +9,7 @@ version = '0.0.1-SNAPSHOT'
 
 java {
 	toolchain {
-		languageVersion = JavaLanguageVersion.of(21)
+		languageVersion = JavaLanguageVersion.of(21) // Java 21로 변경 (강력 권장)
 	}
 }
 
@@ -18,13 +18,15 @@ repositories {
 }
 
 ext {
-	set('springCloudVersion', "2025.0.1")
+	// Boot 3.3.x와 호환되는 Cloud 버전
+	set('springCloudVersion', "2023.0.3")
 }
 
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.cloud:spring-cloud-config-server'
 	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-eureka-client'
+
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }

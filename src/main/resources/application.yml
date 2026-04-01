@@ -1,0 +1,29 @@
+server:
+  port: 13100
+
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: git
+
+  cloud:
+    config:
+      # 서버 자신은 클라이언트 기능을 쓰지 않음 (매우 중요)
+      enabled: false
+      server:
+        git:
+          uri: https://github.com/apangmsa/config-hub
+          default-label: main
+          search-paths:
+            - configs/common
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:3101/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
